@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<header><title>Student Administration System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>
+        body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+    </style></header>
+<body class="w3-light-grey">
+
+
+
+<tr th:each="LoginUser1 : ${LoginUser}">
+
+    <div class="w3-top">
+        <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+            <a href="#home" class="w3-bar-item w3-button" th:text="'当前登录账号：' + ${LoginUser1.getUsername()}">  <b></b> </a>
+            <!-- Float links to the right. Hide them on small screens -->
+
+        </div>
+    </div>
+
+
+</tr>
+<br>
+<br>
+<div class="w3-container w3-padding-32" id="contact">
+
+    <p>Write something.</p>
+    <form action="http://localhost:8080/addWeibo">
+
+        <input class="w3-input w3-border" type="text" name="content" value="">
+        <input type="hidden" name="user" value="">
+        <input type="hidden" name="date" value="">
+        <!--<input class="w3-input w3-border" type="text" placeholder="Name" required="" name="Name">-->
+        <br>
+        <div class="w3-col m3 s12">
+        <input class="w3-input w3-border w3-black w3-section" type="submit" value="发布">
+        </div>
+    </form>
+</div>
+
+
+
+<br>
+
+<tr th:each="weibo : ${weibolists}">
+    <!--<td><a href="#" th:text="${borrowingBooks.getBook().getBookName()}">Title ...</a></td>-->
+
+
+
+    <div class="w3-card-4 w3-margin w3-white">
+
+        <div class="w3-container">
+
+            <h5><td th:text="${weibo.getUser()}">1</td> <span class="w3-opacity"><td th:text="${weibo.getDate()}">1</td></span></h5>
+        </div>
+
+        <div class="w3-container">
+            <p><td th:text="${weibo.getContent()}">1</td></p>
+            <div class="w3-row">
+                <div class="w3-col m2 s12">
+                    <p>
+                    <form class="w3-container w3-padding-large" action="http://localhost:8080/addLikes" >
+                        <input type="hidden" name="likes" th:value="${weibo.getLikes()}">
+                        <input type="hidden" name="id" th:value="${weibo.getId()}">
+                        <input class="w3-input w3-border" type="submit" value="Like it">
+                    </form>
+                    </p>
+                </div>
+
+                <div class="w3-col m3 s12">
+                    <p>
+                    <form class="w3-container w3-padding-large" action="http://localhost:8080/addComment">
+
+                        <input type="text" name="comment" value="">
+                        <input type="hidden" name="id" th:value="${weibo.getId()}">
+                        <input type="hidden" name="date" value="">
+                        <input type="submit" value="评论">
+                    </form>
+                    </p>
+                </div>
+
+
+                <div class="w3-col m2 s12">
+                    <p>
+                    <form class="w3-container w3-padding-large" action="http://localhost:8080/showComment">
+                        <input type="hidden" name="id" th:value="${weibo.getId()}">
+
+                        <input class="w3-input w3-border" type="submit" value="显示评论">
+                    </form>
+                    </p>
+                </div>
+
+
+
+                <div class="w3-col m4 w3-hide-small">
+                    <p><span class="w3-padding-large w3-right"><b>Likes &nbsp;</b> <span class="w3-tag"><td th:text="${weibo.getLikes()}">1</td></span></span></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--<form class="w3-container" action="http://localhost:8080/addLikes" >-->
+        <!--<input type="hidden" name="likes" th:value="${weibo.getLikes()}">-->
+        <!--<input type="hidden" name="id" th:value="${weibo.getId()}">-->
+        <!--<input class="w3-input" type="submit" value="Like it">-->
+    <!--</form>-->
+
+
+    <!--<form action="http://localhost:8080/addComment">-->
+
+        <!--<input type="text" name="comment" value="">-->
+        <!--<input type="hidden" name="id" th:value="${weibo.getId()}">-->
+        <!--<input type="hidden" name="date" value="">-->
+        <!--<input type="submit" value="评论">-->
+    <!--</form>-->
+
+    <!--<form action="http://localhost:8080/showComment">-->
+        <!--<input type="hidden" name="id" th:value="${weibo.getId()}">-->
+        <!--<br>-->
+        <!--<input type="submit" value="显示评论">-->
+    <!--</form>-->
+
+
+
+
+
+
+<!--<tr th:each="cms : ${commentlists}">-->
+    <!--Content:<td th:text="${cms.getComment()}">1</td>-->
+    <!--Content:<td th:text="${cms.getID()}">1</td>-->
+    <!--Content:<td th:text="${cms.getUser()}">1</td>-->
+    <!--Content:<td th:text="${cms.getComment()}">1</td>-->
+
+<!--</tr>-->
+
+
+    <!--<tr th:each="comments : ${commentlists}">-->
+        <!--Content:<td th:text="${comments.getComment()}">1</td>-->
+    <!--Content:<td th:text="${comments.getID()}">1</td>-->
+    <!--Content:<td th:text="${comments.getUser()}">1</td>-->
+    <!--Content:<td th:text="${comments.getComment()}">1</td>-->
+
+
+    </tr>
+
+
+    <br>
+    <br>
+
+    <!--<td th:text="${borrowingBooks}">1</td><br>-->
+
+
+<tr th:each="comments : ${commentlists}">
+    Content:<td th:text="${comments.getComment()}">1</td>
+    Content:<td th:text="${comments.getID()}">1</td>
+    Content:<td th:text="${comments.getUser()}">1</td>
+    Content:<td th:text="${comments.getComment()}">1</td>
+
+</tr>
+
+<br>
+<br>
+
+<!--<form action="http://localhost:8080/add">-->
+    <!--sid:<br>-->
+    <!--<input type="text" name="sid" value="">-->
+    <!--<br>-->
+    <!--sname:<br>-->
+    <!--<input type="text" name="sname" value="">-->
+    <!--<br>-->
+    <!--<input type="submit" value="Submit/create">-->
+<!--</form>-->
+<!--<br>-->
+<!--<form action="http://localhost:8080/delete">-->
+    <!--sid:<br>-->
+    <!--<input type="text" name="sid" value="">-->
+    <!--<br>-->
+    <!--sname:<br>-->
+    <!--<input type="text" name="sname" value="">-->
+    <!--<br>-->
+    <!--<input type="submit" value="Submit/delete">-->
+<!--</form>-->
+<!--<br>-->
+<!--<form action="http://localhost:8080/update">-->
+    <!--sid:<br>-->
+    <!--<input type="text" name="sid" value="">-->
+    <!--<br>-->
+    <!--sname:<br>-->
+    <!--<input type="text" name="sname" value="">-->
+    <!--<br>-->
+    <!--<input type="submit" value="Submit/update">-->
+<!--</form>-->
+<!--<br>-->
+<!--<br>-->
+<!--<a href="http://localhost:8080/all">-->
+<!--<button>Retrieve all</button>-->
+<!--</a>-->
+
+
+</body>
+</html>

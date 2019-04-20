@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<b>student info</b><br>
+<table border="1">
+    <tr>
+        <th>sid</th>
+        <th>sname</th>
+    </tr>
+<tr th:each="borrowingBooks : ${borrowingBooksList}">
+    <!--<td><a href="#" th:text="${borrowingBooks.getBook().getBookName()}">Title ...</a></td>-->
+    <td th:text="${borrowingBooks.getsid()}">1</td>
+    <td th:text="${borrowingBooks.getsname()}">1</td><br>
+    <!--<td th:text="${borrowingBooks}">1</td><br>-->
+</tr>
+</table>
+
+
+<!--<table class="table table-hover table-bordered">-->
+    <!--<thead>-->
+    <!--<tr>-->
+        <!--<th hidden="hidden">序号</th>-->
+        <!--<th>类别名称</th>-->
+        <!--<th>助记码</th>-->
+        <!--<th>操作</th>-->
+    <!--</tr>-->
+    <!--</thead>-->
+    <!--<tbody id="J_template">-->
+    <!--<c:if test="${fn:length(categories) == 0}">-->
+        <!--<tr>-->
+            <!--<td style="text-align: center;"> 无查询结果</td>-->
+        <!--</tr>-->
+    <!--</c:if>-->
+    <!--<c:if test="${fn:length(categories) > 0}">-->
+        <!--<c:forEach var="category" items="${categories}">-->
+            <!--<tr id="item">-->
+                <!--<td hidden="hidden">${category.sid}</td>-->
+                <!--<td>${category.sid}</td>-->
+                <!--<td>${category.sname}</td>-->
+                <!--<td>-->
+                    <!--<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">-->
+                        <!--<a id="editLink" class="blue"-->
+                           <!--onclick="editCategory('${category.sid}','${category.sname}')"-->
+                           <!--data-toggle="modal"-->
+                           <!--data-target="#editModel"-->
+                           <!--title="编辑" style="cursor:pointer;">[编辑]</a>-->
+                        <!--<a id="delLink" class="blue"-->
+                           <!--data-toggle="modal"-->
+                           <!--data-target="#tipModel"-->
+                           <!--title="删除" style="cursor:pointer;">[删除]</a>-->
+                    <!--</div>-->
+                <!--</td>-->
+            <!--</tr>-->
+        <!--</c:forEach>-->
+    <!--</c:if>-->
+    <!--</tbody>-->
+<!--</table>-->
+
+
+</body>
+</html>

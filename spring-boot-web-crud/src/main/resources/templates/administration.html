@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h1>
+        User Administration System
+    </h1>
+
+    <!--<td><a href="#" th:text="${borrowingBooks.getBook().getBookName()}">Title ...</a></td>-->
+    <form action="http://localhost:8080/usr/addUser" method="post">
+        <input type="text" name="user" value="">
+        <input type="text" name="pass" value="">
+
+        <input type="submit" value="add">
+
+    </form>
+
+
+
+    <br>
+    <br>
+
+
+    <table border="1">
+        <tr th:each="eachuser : ${alluser}">
+
+        <td> username: <td th:type="text" th:name="username" th:text="${eachuser.getUsername()}">1</td> </td>
+            <td> password: <td th:type="text" th:name="password" th:text="${eachuser.getPassword()}">1</td> </td>
+
+            <td>
+            <form action="http://localhost:8080/deleteUser" method="post">
+                <input type="hidden" name="username" th:value="${eachuser.getUsername()}">
+                <input type="hidden" name="password" th:value="${eachuser.getPassword()}">
+
+
+                <input type="submit" value="delete">
+
+            </form>
+            </td>
+
+            <td>
+            <form action="http://localhost:8080/updateUser" method="post">
+                <input type="hidden" name="user1" th:value="${eachuser.getUsername()}">
+                <input type="hidden" name="pass1" th:value="${eachuser.getPassword()}">
+                <input type="text" name="user2" value="">
+                <input type="text" name="pass2" value="">
+
+                <input type="submit" value="update">
+
+            </form>
+            </td>
+
+
+        </tr>
+    </table>
+
+
+
+
+    <br>
+
+    <!--<td th:text="${borrowingBooks}">1</td><br>-->
+
+
+</body>
+</html>
